@@ -1,2 +1,7 @@
 ---
 # handlers file for ubuntu_standardization
+
+- name: update motd
+  ansible.builtin.debug:
+    msg: "MOTD has been updated for {{ configure_user }}"
+
