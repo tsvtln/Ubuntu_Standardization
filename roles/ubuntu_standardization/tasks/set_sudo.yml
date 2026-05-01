@@ -1,0 +1,19 @@
+---
+# Task to configure passwordless sudo for user
+
+- name: "set_sudo | Create sudoers.d directory"
+  ansible.builtin.file:
+    path: /etc/sudoers.d
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: "set_sudo | Configure passwordless sudo for {{ configure_user }}"
+  ansible.builtin.copy:
+    content: "{{ configure_user }} ALL=(ALL:ALL) NOPASSWD: ALL\n"
+    dest: /etc/sudoers.d/{{ configure_user }}
+    mode: '0440'
+    owner: root
+    group: root
+    validate: 'visudo -cf %s'

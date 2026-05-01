@@ -1,0 +1,11 @@
+---
+# Task to configure MOTD (Message of the Day)
+
+- name: "set_motd | Deploy MOTD template"
+  ansible.builtin.template:
+    src: motd.j2
+    dest: /home/{{ configure_user }}/motd
+    mode: '0644'
+    owner: "{{ configure_user }}"
+    group: "{{ configure_user }}"
+  notify: update motd

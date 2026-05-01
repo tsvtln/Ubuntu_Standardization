@@ -1,0 +1,22 @@
+---
+# Main tasks file for ubuntu_standardization role
+
+- name: Import MOTD setup task
+  ansible.builtin.import_tasks: set_motd.yml
+
+- name: Import landscape-sysinfo setup task
+  ansible.builtin.import_tasks: set_landscape_sysinfo.yml
+
+- name: Import bashrc setup task
+  ansible.builtin.import_tasks: set_bashrc.yml
+
+- name: Import sudo configuration task
+  ansible.builtin.import_tasks: set_sudo.yml
+
+- name: Import SSH key configuration task
+  ansible.builtin.import_tasks: set_ssh_key.yml
+
+- name: Import hosts configuration task
+  ansible.builtin.import_tasks: set_hosts.yml
+
+

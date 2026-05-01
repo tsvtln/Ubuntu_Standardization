@@ -1,0 +1,11 @@
+---
+# Task to configure landscape-sysinfo update-motd script
+
+- name: "set_landscape_sysinfo | Deploy landscape-sysinfo update-motd script"
+  ansible.builtin.template:
+    src: 50-landscape-sysinfo.j2
+    dest: /etc/update-motd.d/50-landscape-sysinfo
+    mode: '0755'
+    owner: root
+    group: root
+

@@ -1,0 +1,18 @@
+---
+# Task to configure hostname in /etc/hosts
+
+- name: "set_hosts | Get system hostname"
+  ansible.builtin.command: hostname
+  register: system_hostname
+  changed_when: false
+
+- name: "set_hosts | Update /etc/hosts with hostname"
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: "^127.0.1.1"
+    line: "127.0.1.1 {{ system_hostname.stdout }}.local {{ system_hostname.stdout }}"
+    state: present
+    owner: root
+    group: root
+    mode: '0644'
+

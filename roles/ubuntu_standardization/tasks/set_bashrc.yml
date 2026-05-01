@@ -1,0 +1,48 @@
+---
+# Task to configure bashrc with aliases and fancy bash prompt
+
+- name: "set_bashrc | Deploy fancy bash configuration"
+  ansible.builtin.template:
+    src: fancy_bash.j2
+    dest: /home/{{ configure_user }}/.fancy_bash
+    mode: '0644'
+    owner: "{{ configure_user }}"
+    group: "{{ configure_user }}"
+
+- name: "set_bashrc | Add aliases to bashrc"
+  ansible.builtin.blockinfile:
+    path: /home/{{ configure_user }}/.bashrc
+    block: |
+      # some more ls aliases
+      alias ll='ls -lF'
+      alias la='ls -A'
+      alias ze='sudo apt-get'
+      alias l='ls -ltra'
+      alias c='clear'
+      alias h='history'
+      alias ..='cd ..'
+      alias ...='cd ../..'
+      alias gerp='grep'
+      alias gper='grep'
+      alias gpu='git pull'
+      alias gps='git push'
+      alias gc='git commit -m'
+      alias ga='git add .'
+    marker: "# {mark} ANSIBLE MANAGED ALIASES"
+    owner: "{{ configure_user }}"
+    group: "{{ configure_user }}"
+
+- name: "set_bashrc | Add source directives for bash_aliases and fancy_bash"
+  ansible.builtin.blockinfile:
+    path: /home/{{ configure_user }}/.bashrc
+    block: |
+      if [ -f ~/.bash_aliases ]; then
+          . ~/.bash_aliases
+      fi
+
+      if [ -f ~/.fancy_bash ]; then
+          . ~/.fancy_bash
+      fi
+    marker: "# {mark} ANSIBLE MANAGED SOURCE DIRECTIVES"
+    owner: "{{ configure_user }}"
+    group: "{{ configure_user }}"

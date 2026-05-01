@@ -1,0 +1,10 @@
+---
+# Main entry point for Ubuntu standardization playbook
+
+- name: Ubuntu Standardization
+  hosts: all
+  become: yes
+
+  roles:
+    - ubuntu_standardization
+

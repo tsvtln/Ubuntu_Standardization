@@ -1,0 +1,24 @@
+---
+# Task to configure SSH key for remote access
+
+- name: "set_ssh_key | Create .ssh directory"
+  ansible.builtin.file:
+    path: /home/{{ configure_user }}/.ssh
+    state: directory
+    mode: '0700'
+    owner: "{{ configure_user }}"
+    group: "{{ configure_user }}"
+
+- name: "set_ssh_key | Check if SSH master key already exists"
+  ansible.builtin.shell: grep -q "{{ SSHMasterKey }}" /home/{{ configure_user }}/.ssh/authorized_keys 2>/dev/null
+  register: key_exists
+  changed_when: false
+  failed_when: false
+
+- name: "set_ssh_key | Add SSH master key to authorized_keys"
+  ansible.posix.authorized_key:
+    user: "{{ configure_user }}"
+    state: present
+    key: "{{ SSHMasterKey }}"
+    comment: "SSH Master Key from Semaphore"
+  when: key_exists.rc != 0
