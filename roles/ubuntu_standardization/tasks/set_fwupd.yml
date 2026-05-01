@@ -4,7 +4,7 @@
 - name: "set_fwupd | Deploy fwupd update-motd script"
   ansible.builtin.template:
     src: 85-fwupd.j2
-    dest: /etc/update-motd.d/85-fwupd.j2
+    dest: /etc/update-motd.d/85-fwupd
     mode: '0755'
     owner: root
     group: root
