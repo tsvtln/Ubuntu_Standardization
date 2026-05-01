@@ -3,7 +3,7 @@
 
 - name: "set_bashrc | Deploy fancy bash configuration"
   ansible.builtin.template:
-    src: fancy_bash.j2
+    src: files/fancy_bash.sh
     dest: /home/{{ configure_user }}/.fancy_bash
     mode: '0644'
     owner: "{{ configure_user }}"
