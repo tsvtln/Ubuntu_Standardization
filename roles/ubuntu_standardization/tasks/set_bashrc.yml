@@ -2,7 +2,7 @@
 # Task to configure bashrc with aliases and fancy bash prompt
 
 - name: "set_bashrc | Deploy fancy bash configuration"
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: files/fancy_bash.sh
     dest: /home/{{ configure_user }}/.fancy_bash
     mode: '0644'
