@@ -1,0 +1,10 @@
+---
+# Task to configure release-upgrade update-motd script
+
+- name: "set_release_upgrade | Deploy release-upgrade update-motd script"
+  ansible.builtin.template:
+    src: 91-release-upgrade.j2
+    dest: /etc/update-motd.d/91-release-upgrade
+    mode: '0755'
+    owner: root
+    group: root

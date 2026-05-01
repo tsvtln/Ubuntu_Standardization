@@ -25,10 +25,10 @@ else
 
     # Check system load against threshold
     if [ "$(echo "$(cut -f1 -d ' ' /proc/loadavg) < $THRESHOLD" | bc)" -eq 1 ]; then
-        SYSINFO=$(printf "\n System information as of %s\n\n%s\n  Usage of /media/jelly_storage/: %s  \n  Uptime:       %s \n" \
+        SYSINFO=$(printf "\n System information as of %s\n\n%s\n  Usage of /: %s  \n  Uptime:       %s \n" \
             "$(/bin/date)" \
             "$(/usr/bin/landscape-sysinfo)" \
-            "$(df -h /media/jelly_storage/ | awk 'NR==2 {print $3 " of " $2}')" \
+            "$(df -h / | awk 'NR==2 {print $3 " of " $2}')" \
             "$(/usr/bin/uptime -p | sed 's/^up //')")
 
         echo "$SYSINFO" 2>/dev/null >"$CACHE" || true

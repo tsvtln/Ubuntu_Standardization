@@ -1,0 +1,10 @@
+---
+# Task to configure motd-news update-motd script
+
+- name: "set_motd_news | Deploy motd-news update-motd script"
+  ansible.builtin.template:
+    src: 50-motd-news.j2
+    dest: /etc/update-motd.d/50-motd-news
+    mode: '0755'
+    owner: root
+    group: root

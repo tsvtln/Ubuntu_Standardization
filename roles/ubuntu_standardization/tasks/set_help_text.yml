@@ -1,0 +1,10 @@
+---
+# Task to configure help-text update-motd script
+
+- name: "set_help_text | Deploy help-text update-motd script"
+  ansible.builtin.template:
+    src: 10-help-text.j2
+    dest: /etc/update-motd.d/10-help-text
+    mode: '0755'
+    owner: root
+    group: root

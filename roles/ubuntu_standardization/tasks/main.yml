@@ -7,6 +7,18 @@
 - name: Import landscape-sysinfo setup task
   ansible.builtin.import_tasks: set_landscape_sysinfo.yml
 
+- name: Import set_fwupd setup task
+  ansible.builtin.import_tasks: set_fwupd.yml
+
+- name: Import set_help_text setup task
+  ansible.builtin.import_tasks: set_help_text.yml
+
+- name: Import set_motd_news setup task
+  ansible.builtin.import_tasks: set_motd_news.yml
+
+- name: Import set_release_upgrade setup task
+  ansible.builtin.import_tasks: set_release_upgrade.yml
+
 - name: Import bashrc setup task
   ansible.builtin.import_tasks: set_bashrc.yml
 
